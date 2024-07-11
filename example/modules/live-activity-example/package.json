@@ -1,0 +1,15 @@
+{
+  "name": "live-activity-example",
+  "version": "1.0.0",
+  "description": "Example local module for integrating Live Activities.",
+  "main": "app.plugin.js",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean"
+  },
+  "author": "Braze, Inc.",
+  "devDependencies": {
+    "expo": "^48.0.0",
+    "expo-module-scripts": "^3.0.4"
+  }
+}
