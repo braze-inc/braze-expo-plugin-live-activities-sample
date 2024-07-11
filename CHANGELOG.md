@@ -1,3 +1,15 @@
+# 2.2.0
+
+##### Fixed
+- Fixes the Expo prebuild script to prevent duplicate Braze properties from being added to `gradle.properties`.
+  - Thanks for your contribution, @matinzd!
+
+##### Added
+- Adds an example integration of iOS Live Activities to the sample app.
+  - This implementation creates an extension target in Xcode and leverages a custom module to send the relevant info to Braze's server.
+  - The integration uses a third-party library [`expo-apple-targets`](https://github.com/EvanBacon/expo-apple-targets) to create a new target in your Xcode project.
+  - [This folder](https://github.com/braze-inc/braze-expo-plugin/tree/main/example/example/targets/live-activities) contains the files for the newly created target in Xcode, and [this folder](https://github.com/braze-inc/braze-expo-plugin/tree/main/example/example/modules/live-activity-example) contains the custom module that is imported into your Expo app.
+
 # 2.1.2
 
 ##### Fixed

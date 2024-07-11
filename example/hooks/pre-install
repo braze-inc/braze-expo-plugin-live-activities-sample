@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+# Default to false if omitted
+INSTALL_LIVE_ACTIVITIES=${1:-false}
+
+# Convert to lowercase and validate parameter
+INSTALL_LIVE_ACTIVITIES=$(echo "$INSTALL_LIVE_ACTIVITIES" | tr '[:upper:]' '[:lower:]')
+if [ "$INSTALL_LIVE_ACTIVITIES" != "true" ] && [ "$INSTALL_LIVE_ACTIVITIES" != "false" ]; then
+  echo "Invalid parameter for installing Live Activities. Please provide 'true' or 'false'."
+  exit 1
+fi
+
 cd ../plugin
 yarn install
 yarn build
+
+# Additional setup for Live Activities
+if [ "$INSTALL_LIVE_ACTIVITIES" == "true" ]; then
+  echo "Importing library to modify Xcode targets."
+  cd ../example
+  yarn add @bacons/apple-targets
+
+  echo "Integrating app with Live Activities."
+  cd modules/live-activity-example
+  yarn install
+  yarn build
+fi

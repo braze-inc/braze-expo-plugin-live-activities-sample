@@ -20,7 +20,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.braze.expoexample"
+      "bundleIdentifier": "com.braze.expoexample",
+      "infoPlist": {
+        "NSSupportsLiveActivities": "YES"
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -72,6 +75,15 @@
           "androidHandlePushDeepLinksAutomatically": true,
           "androidNotificationAccentColor": "#ff112233"
         }
+      ],
+      [
+        "@bacons/apple-targets",
+        {
+          "appleTeamId": "5GLZKGNWQ3"
+        }
+      ],
+      [
+        "./modules/live-activity-example/app.plugin.js"
       ]
     ],
     "extra": {
@@ -88,6 +100,10 @@
                 {
                   "targetName": "BrazeExpoPushStories",
                   "bundleIdentifier": "com.braze.expoexample.BrazeExpoPushStories"
+                },
+                {
+                  "targetName": "BrazeExpoLiveActivities",
+                  "bundleIdentifier": "com.braze.expoexample.liveActivities"
                 }
               ]
             }

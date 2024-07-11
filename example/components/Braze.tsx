@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import type { ReactElement } from 'react';
+import { launchLiveActivity, initializeBrazeLiveActivities, registerPushToStartLiveActivity, optOutPushToStartLiveActivity } from '../modules/live-activity-example/src';
 import {
   StyleSheet,
   Text,
@@ -159,6 +160,8 @@ export const BrazeComponent = (): ReactElement => {
         handleOpenUrl({ url });
       }
     });
+
+    initializeBrazeLiveActivities();
 
     Braze.subscribeToInAppMessage(
       true,
@@ -563,6 +566,21 @@ export const BrazeComponent = (): ReactElement => {
     }
   };
 
+  const launchiOSLiveActivity = () => {
+    console.log('Launching iOS Live Activity');
+    launchLiveActivity();
+  };
+
+  const registerLiveActivity = () => {
+    console.log('Registering Live Activity for push-to-start.');
+    registerPushToStartLiveActivity('LiveActivityExampleAttributes');
+  };
+
+  const optOutOfLiveActivity = () => {
+    console.log('Opting out of receiving Live Activity push-to-start notifications');
+    optOutPushToStartLiveActivity('LiveActivityExampleAttributes');
+  };
+
   const requestPushPermission = () => {
     const options = {
       alert: true,
@@ -646,6 +664,7 @@ export const BrazeComponent = (): ReactElement => {
       </View>
 
       {/* Events */}
+
       <View style={styles.row}>
         <TextInput
           style={styles.textInput}
@@ -825,6 +844,19 @@ export const BrazeComponent = (): ReactElement => {
         <Text>Set Custom Location Attribute</Text>
       </TouchableHighlight>
 
+      {/* iOS Live Activities */}
+
+      <Space />
+      <TouchableHighlight onPress={launchiOSLiveActivity}>
+        <Text>Start Live Activity (iOS)</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={registerLiveActivity}>
+        <Text>Register for Push-to-Start Live Activity (iOS)</Text>
+      </TouchableHighlight>
+      <TouchableHighlight onPress={optOutOfLiveActivity}>
+        <Text>Opt-out of Push-to-Start Live Activity (iOS)</Text>
+      </TouchableHighlight>
+
       {/* Other */}
 
       <Space />
@@ -860,7 +892,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-    paddingBottom: 100,
+    paddingBottom: 50,
   },
   textInput: {
     height: 40,

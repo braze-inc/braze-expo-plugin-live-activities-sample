@@ -280,13 +280,13 @@ const withBrazeDangerousMod: ConfigPlugin<ConfigProps> = (config, props) => {
         const podfile = fs.readFileSync(podfilePath);
         if (!podfile.includes(BRAZE_IOS_NOTIFICATION_SERVICE_POD)) {
           const notificationServiceTarget =
-          `
+            `
             target '${BRAZE_IOS_RICH_PUSH_TARGET}' do
               use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
               use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
               pod '${BRAZE_IOS_NOTIFICATION_SERVICE_POD}'
             end
-          `
+            `
           fs.appendFileSync(podfilePath, notificationServiceTarget);
         }
       }
@@ -309,13 +309,13 @@ const withBrazeDangerousMod: ConfigPlugin<ConfigProps> = (config, props) => {
         const podfile = fs.readFileSync(podfilePath);
         if (!podfile.includes(BRAZE_IOS_PUSH_STORY_POD)) {
           const notificationServiceTarget =
-          `
+            `
             target '${BRAZE_IOS_PUSH_STORY_TARGET}' do
               use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
               use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
               pod '${BRAZE_IOS_PUSH_STORY_POD}'
             end
-          `
+            `
           fs.appendFileSync(podfilePath, notificationServiceTarget);
         }
       }
